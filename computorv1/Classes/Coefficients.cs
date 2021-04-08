@@ -7,16 +7,27 @@ namespace computorv1.Classes
         {
         }
 
-        //Coefficient for x^2
+        /// <summary>
+        /// Coefficient for x^2
+        /// </summary>
         public float A { get; set; } = 0;
 
-        //Coefficient for x^1
+        /// <summary>
+        /// Coefficient for x^1
+        /// </summary>
         public float B { get; set; } = 0;
 
-        //Coefficient for x^0
+        /// <summary>
+        /// Coefficient for x^0
+        /// </summary>
         public float C { get; set; } = 0;
 
-        //+ operator between two Coefficients
+        /// <summary>
+        /// - operator between two Coefficients
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static Coefficients operator -(Coefficients a, Coefficients b)
         {
             return new Coefficients()
@@ -27,6 +38,10 @@ namespace computorv1.Classes
             };
         }
 
+        /// <summary>
+        /// ToString that displays the coefficients as in the subject
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string str = null;
