@@ -29,6 +29,8 @@ namespace computorv1.Methods.Solving
             else
             {
                 string solution = (-p.ReducedC.C / p.ReducedC.B).ToString();
+                if (solution == "-0")
+                    solution = "0";
                 if (p.Options.Verbose)
                 {
                     Console.WriteLine("This equation is linear (a * x + b). We can calcultate its solution by doing -b / a.\n" +

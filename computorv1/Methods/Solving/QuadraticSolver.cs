@@ -25,6 +25,8 @@ namespace computorv1.Methods.Solving
             if (delta == 0)
             {
                 string solution = (-p.ReducedC.B / (2f * p.ReducedC.A)).ToString();
+                if (solution == "-0")
+                    solution = "0";
                 if (p.Options.Verbose)
                 {
                     Console.WriteLine("The discriminant is equal to 0. It means that the equation has one real solution, that we can obtain by doing\n" +
@@ -41,7 +43,11 @@ namespace computorv1.Methods.Solving
             {
 
                 string x1 = ((-p.ReducedC.B - MathTools.Sqrt(delta)) / (2f * p.ReducedC.A)).ToString();
+                if (x1 == "-0")
+                    x1 = "0";
                 string x2 = ((-p.ReducedC.B + MathTools.Sqrt(delta)) / (2f * p.ReducedC.A)).ToString();
+                if (x2 == "-0")
+                    x2 = "0";
                 if (p.Options.Verbose)
                 {
                     Console.WriteLine("The discriminant is strictly positive. It means that the equation has two real solutions, that we can obtain by doing\n" +

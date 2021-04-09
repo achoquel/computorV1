@@ -12,7 +12,7 @@ namespace computorv1
         {
             if (BasicParse(args))
             {
-                Polynomial p = Polynomial.Parse(args[1], args[2]?.ToString());
+                Polynomial p = Polynomial.Parse(args[0], args.Length >= 2 ? args[1]?.ToString() : null);
                 if (p.IsValid)
                 {
                     p.Solve();
@@ -27,9 +27,9 @@ namespace computorv1
         /// <returns></returns>
         private static bool BasicParse(string[] args)
         {
-            if (args.Length > 1 && !string.IsNullOrEmpty(args[1]))
+            if (args.Length >= 1 && !string.IsNullOrEmpty(args[0]))
             {
-                if (args[1].Trim() == "help")
+                if (args[0].Trim() == "help")
                 {
                     Help();
                     return false;
