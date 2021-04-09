@@ -126,20 +126,20 @@ namespace computorv1.Classes
                 {
                     if (this.B != 0 || this.A != 0)
                         str += "+ ";
-                    str += this.C.ToString();
+                    str += this.C.ToString() + " ";
                 }
                 else
                 {
                     if (this.B != 0 || this.A != 0)
                     {
                         str += "- ";
-                        str += (-this.C).ToString();
+                        str += (-this.C).ToString() + " ";
                     }
                     else
-                        str += this.C.ToString();
+                        str += this.C.ToString() + " ";
                 }
             }
-            return str ?? "0";
+            return str?.Replace("1x", "x") ?? "0";
         }
     }
 }

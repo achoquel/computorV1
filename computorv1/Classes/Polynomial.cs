@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using computorv1.Methods.Parsing;
 using computorv1.Methods.Solving;
+using computorv1.Methods.Tools;
 
 namespace computorv1.Classes
 {
@@ -73,18 +74,24 @@ namespace computorv1.Classes
         }
 
         /// <summary>
+        /// The options for the display of the results
+        /// </summary>
+        public Options Options { get; set; }
+
+        /// <summary>
         /// Handle the whole parsing of the equation.
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        public static Polynomial Parse(string e)
+        public static Polynomial Parse(string e, string options)
         {
             //We remove whitespaces and we put every X to lowercase
             e = Regex.Replace(e, @"\s+", "").Replace('X', 'x');
             Polynomial p = new Polynomial()
             {
                 Equation = e,
-                IsValid = BasicParsingService.CheckFullEquation(e)
+                IsValid = BasicParsingService.CheckFullEquation(e),
+                Options = options != null ? BasicParsingService.ParseOptions(options) : new Options()
             };
             if(p.IsValid)
             {
@@ -98,8 +105,8 @@ namespace computorv1.Classes
         /// </summary>
         public void Solve()
         {
-            Console.WriteLine("Trying to resolve " + this.LeftC.ToString() + "= " + this.RightC.ToString() + ".\n" +
-                              "Reduced form: " + this.ReducedC.ToString() + " = 0.\n" +
+            Console.WriteLine("Trying to resolve " + (this.Options.Natural ? this.LeftC.ToStringNatural() : this.LeftC.ToString()) + "= " + (this.Options.Natural ? this.RightC.ToStringNatural() : this.RightC.ToString()) +
+                              ".\nThe Reduced form of this equation is " + (this.Options.Natural ? this.ReducedC.ToStringNatural() : this.ReducedC.ToString()) + "= 0.\n" +
                               "The Polynomial Degree of this equation is " + this.Degree.ToString() + "\n\n");
             if (this.LeftC == this.RightC)
             {
@@ -117,7 +124,7 @@ namespace computorv1.Classes
                 }
                 else
                 {
-                    Console.WriteLine("This equation can't be solved by computorV1.");
+                    ErrorTools.DisplayError("Error: This equation can't be solved by computorV1.");
                 }
             }
         }

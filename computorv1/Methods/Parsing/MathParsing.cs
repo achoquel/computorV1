@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using computorv1.Classes;
+using computorv1.Methods.Tools;
 
 namespace computorv1.Methods.Parsing
 {
@@ -69,6 +70,7 @@ namespace computorv1.Methods.Parsing
                     C = c
                 };
             }
+            ErrorTools.DisplayError("Error: An error occured during the parsing for: " + string.Concat(split));
             return null;
         }
 
@@ -106,11 +108,15 @@ namespace computorv1.Methods.Parsing
             var split = frac.Split("/", StringSplitOptions.RemoveEmptyEntries);
             if (split.Length == 2)
             {
-                float a, b;
+                float a = 0 , b = 0;
 
                 if (float.TryParse(split[0], out a) && float.TryParse(split[1], out b) && b != 0)
                 {
                     return (a / b).ToString();
+                }
+                else if (b == 0)
+                {
+                    ErrorTools.DisplayError("Error: Division by 0.");
                 }
             }
             return null;

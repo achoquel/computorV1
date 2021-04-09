@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using computorv1.Classes;
+using computorv1.Methods.Tools;
 
 namespace computorv1.Methods.Parsing
 {
     public class BasicParsingService
     {
         private static readonly string[] AUTHORIZED_POWERS = { "0", "1", "2" };
+        private static readonly string AUTHORIZED_CHARS = "0123456789+-=^/*x.";
+        private static readonly string AVAILABLE_OPTIONS = "-vn";
 
         public BasicParsingService()
         {
@@ -31,7 +34,7 @@ namespace computorv1.Methods.Parsing
                 if (CheckForbiddenSyntax(e))
                     return true;
             }
-            Console.WriteLine("Input is invalid. Type \"./computorv1 help\" for more informations.");
+            ErrorTools.DisplayError("Error: Input is invalid. Type \"./computorv1 help\" for more informations.");
             return false;
         }
 
@@ -59,10 +62,28 @@ namespace computorv1.Methods.Parsing
                 {
                     p.IsValid = false;
                 }
-
-                //Console.WriteLine("Left: a = " + p.LeftC.A + " b = " + p.LeftC.B + " c = " + p.LeftC.C + "\n");
-                //Console.WriteLine("Right: a = " + p.RightC.A + " b = " + p.RightC.B + " c = " + p.RightC.C + "\n");
             }
+        }
+
+        public static Options ParseOptions(string o)
+        {
+            if (o.FirstOrDefault() == '-')
+            {
+                if (!o.All(c => AVAILABLE_OPTIONS.Contains(c)))
+                {
+                    List<char> InvalidOptions = o.Where(c => !AVAILABLE_OPTIONS.Any(opt => opt == c)).ToList();
+                    foreach (var io in InvalidOptions)
+                    {
+                        ErrorTools.DisplayError("Error: There is no option named '" + io.ToString() + "' avaiable.");
+                    }
+                }
+                return new Options()
+                {
+                    Verbose = o.Contains("v"),
+                    Natural = o.Contains("n")
+                };
+            }
+            return new Options();
         }
 
         /// <summary>
@@ -108,7 +129,7 @@ namespace computorv1.Methods.Parsing
         private static bool CheckForbiddenSyntax(string e)
         {
             //We check for forbidden characters
-            if (!e.All(c => "0123456789+-=^/*x.".Contains(c)))
+            if (!e.All(c => AUTHORIZED_CHARS.Contains(c)))
                 return false;
             //We check for double operators
             if (e.Contains("++") || e.Contains("**") || e.Contains("--") || e.Contains("-+") || e.Contains("+-") || e.Contains("..") || e.Contains("//") || e.Contains("x/"))
@@ -136,6 +157,7 @@ namespace computorv1.Methods.Parsing
                     
                 if (!AUTHORIZED_POWERS.Any(e => e == exp))
                 {
+                    ErrorTools.DisplayError("Error: The degree of this equation is not handled by computorv1.");
                     return false;
                 }
 
@@ -154,6 +176,7 @@ namespace computorv1.Methods.Parsing
                 }
                 else
                 {
+                    ErrorTools.DisplayError("Error: Be sure to put only once the same power of x on each side of the equation.");
                     return false;
                 }
             }

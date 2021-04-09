@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using computorv1.Classes;
 using computorv1.Methods.Parsing;
+using computorv1.Methods.Tools;
 
 namespace computorv1
 {
@@ -9,23 +10,12 @@ namespace computorv1
     {
         static void Main(string[] args)
         {
-            //TODO : Remove
-            string[] test = new string[2]
+            if (BasicParse(args))
             {
-                "dd",
-                "x^2 + 3 = x^2 - 8"
-            };
-
-            if (BasicParse(test))
-            {
-                Polynomial p = Polynomial.Parse(test[1]);
+                Polynomial p = Polynomial.Parse(args[1], args[2]?.ToString());
                 if (p.IsValid)
                 {
                     p.Solve();
-                }
-                else
-                {
-                    Console.WriteLine("The provided equation is not well formated.");
                 }
             }
         }
@@ -47,7 +37,7 @@ namespace computorv1
                 else
                     return true;
             }
-            Console.WriteLine("Input is empty. Type \"./computorv1 help\" for more informations.");
+            ErrorTools.DisplayError("Error: Input is empty. Type \"./computorv1 help\" for more informations.");
             return false;
         }
 
@@ -56,7 +46,20 @@ namespace computorv1
         /// </summary>
         private static void Help()
         {
-            Console.WriteLine("send help please");
+            Console.WriteLine("----------------------------------\n" +
+                              "    ComputorV1 - by achoquel\n" +
+                              "----------------------------------\n" +
+                              "This program will help you to solve some polynomial equations. It accepts linear and quadratic equations.\n" +
+                              "To do so, type ./computorv1 \"equation\" [-options]\n\n" +
+                              "The equation must contain at least a 'x' and a '='.\n" +
+                              "The program accepts two syntaxes, you can either write each power of x, or just write your equation naturally, or even both at the same time.\n" +
+                              "For example:\n" +
+                              "2 * x ^ 2 + 1 * x ^ 0 = 3 * x ^ 1\n" +
+                              "2x^2 + 1 = 3x\n" +
+                              "2x^2 + 1 = 3 * x^1\n\n" +
+                              "Available options:\n" +
+                              "-v (Verbose): Display some intermediates steps during the solving.\n" +
+                              "-n (Natural): Display the equations with a natural format (ex: 2x^2 * 3x + 1 = -2x)");
         }
     }
 }

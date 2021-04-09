@@ -17,12 +17,29 @@ namespace computorv1.Methods.Solving
         {
             if (p.ReducedC.B == 0)
             {
-                Console.WriteLine("This equation does not have any solution.");
+                if (p.Options.Verbose)
+                {
+                    Console.WriteLine("Since there's no 'x' in this equation, it can't have a solution.");
+                }
+                else
+                {
+                    Console.WriteLine("This equation does not have any solution.");
+                }
             }
             else
             {
                 string solution = (-p.ReducedC.C / p.ReducedC.B).ToString();
-                Console.WriteLine("This equation has a one real solution.\nx = " + solution);
+                if (p.Options.Verbose)
+                {
+                    Console.WriteLine("This equation is linear (a * x + b). We can calcultate its solution by doing -b / a.\n" +
+                        "x = -b / a\n" +
+                        "x = " + (p.ReducedC.C < 0 ? (-p.ReducedC.C).ToString() : "-" + p.ReducedC.C.ToString()) + " / " + p.ReducedC.B +
+                        "\nx = " + solution);
+                }
+                else
+                {
+                    Console.WriteLine("This equation has a one real solution.\nx = " + solution);
+                }
             }
         }
     }
