@@ -34,7 +34,7 @@ namespace computorv1.Methods.Parsing
                 if (CheckForbiddenSyntax(e))
                     return true;
             }
-            ErrorTools.DisplayError("Error: Input is invalid. Type \"dotnet run computorv1 --help\" for more informations.");
+            ErrorTools.DisplayError("Error: Input is invalid. Type \"dotnet run help\" for more informations.");
             return false;
         }
 
@@ -46,7 +46,7 @@ namespace computorv1.Methods.Parsing
         {
             //We Parse our full equation to extract and verify both sides of it
             ExtractAndParseSides(ref p);
-            
+
             //If everything is ok, we assign the coefficients
             if (p.IsValid)
             {
@@ -154,7 +154,7 @@ namespace computorv1.Methods.Parsing
             foreach (var part in parts)
             {
                 var exp = MathParsing.DetectPower(part);
-                    
+
                 if (!AUTHORIZED_POWERS.Any(e => e == exp))
                 {
                     ErrorTools.DisplayError("Error: The degree of this equation is not handled by computorv1.");

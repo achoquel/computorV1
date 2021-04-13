@@ -37,7 +37,7 @@ namespace computorv1
                 else
                     return true;
             }
-            ErrorTools.DisplayError("Error: Input is empty. Type \"dotnet run computorv1 --help\" for more informations.");
+            ErrorTools.DisplayError("Error: Input is empty. Type \"dotnet run help\" for more informations.");
             return false;
         }
 
@@ -50,7 +50,7 @@ namespace computorv1
                               "    ComputorV1 - by achoquel\n" +
                               "----------------------------------\n" +
                               "This program will help you to solve some polynomial equations. It accepts linear and quadratic equations.\n" +
-                              "To do so, type dotnet run computorv1 -- \"equation\" [-options]\n\n" +
+                              "To do so, type dotnet run \"equation\" [-options]\n\n" +
                               "The equation must contain at least a 'x' and a '='.\n" +
                               "The program accepts two syntaxes, you can either write each power of x, or just write your equation naturally, or even both at the same time.\n" +
                               "For example:\n" +
