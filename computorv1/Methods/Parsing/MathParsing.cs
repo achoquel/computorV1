@@ -24,8 +24,8 @@ namespace computorv1.Methods.Parsing
 
             foreach (var part in split)
             {
-                //We remove any * from the part to make it easier to parse
-                var tpart = Regex.Replace(part, @"\*+", "");
+                //We remove any * from the part to make it easier to parse, and replace . by , to use float.tryparse
+                var tpart = Regex.Replace(part, @"\*+", "").Replace(".", ",");
                 string exp = DetectPower(part);
                 if (tpart.Contains('x'))
                 {
