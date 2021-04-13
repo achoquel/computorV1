@@ -34,7 +34,7 @@ namespace computorv1.Methods.Parsing
                 if (CheckForbiddenSyntax(e))
                     return true;
             }
-            ErrorTools.DisplayError("Error: Input is invalid. Type \"./computorv1 help\" for more informations.");
+            ErrorTools.DisplayError("Error: Input is invalid. Type \"dotnet run computorv1 --help\" for more informations.");
             return false;
         }
 
