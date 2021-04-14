@@ -99,22 +99,47 @@ namespace computorv1.Classes
             string str = null;
 
             if (this.A != 0)
-                str += this.A.ToString() + "x^2 ";
+            {
+                if (this.A == 1 || this.A == -1)
+                {
+                    str += (this.A == 1 ? "x^2 " : "-x^2 ");
+                }
+                else
+                {
+                    str += this.A.ToString() + "x^2 ";
+                }
+            }
             if (this.B != 0)
             {
                 //To have a pretty display, we handle this case to display n * x^2 - k * x instead of n * x^2 -k * x
                 if (this.B > 0)
                 {
                     if (this.A != 0)
+                    {
                         str += "+ ";
-                    str += this.B.ToString() + "x ";
+                        if (this.B == 1)
+                        {
+                            str += "x ";
+                        }
+                    }
+                    else
+                    {
+                        str += this.B.ToString() + "x ";
+                    }
                 }
-                else
+                else if (this.B < 0)
                 {
                     if (this.A != 0)
                     {
                         str += "- ";
-                        str += (-this.B).ToString() + "x ";
+                        if (this.B == 1)
+                        {
+                            str += "x ";
+                        }
+                        else
+                        {
+                            str += (-this.B).ToString() + "x ";
+                        }
                     }
                     else
                         str += this.B.ToString() + "x ";
@@ -139,7 +164,7 @@ namespace computorv1.Classes
                         str += this.C.ToString() + " ";
                 }
             }
-            return str?.Replace("1x", "x") ?? "0";
+            return str ?? "0";
         }
     }
 }
