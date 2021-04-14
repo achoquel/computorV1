@@ -58,7 +58,7 @@ namespace computorv1
                               "2x^2 + 1 = 3x\n" +
                               "2x^2 + 1 = 3 * x^1\n\n" +
                               "Available options:\n" +
-                              "-v (Verbose): Display some intermediates steps during the solving.\n" +
+                              "-s (Steps): Display some intermediates steps during the solving.\n" +
                               "-n (Natural): Display the equations with a natural format (ex: 2x^2 * 3x + 1 = -2x)");
         }
     }

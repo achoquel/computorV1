@@ -11,7 +11,7 @@ namespace computorv1.Methods.Parsing
     {
         private static readonly string[] AUTHORIZED_POWERS = { "0", "1", "2" };
         private static readonly string AUTHORIZED_CHARS = "0123456789+-=^/*x.";
-        private static readonly string AVAILABLE_OPTIONS = "-vn";
+        private static readonly string AVAILABLE_OPTIONS = "-sn";
 
         public BasicParsingService()
         {
@@ -79,7 +79,7 @@ namespace computorv1.Methods.Parsing
                 }
                 return new Options()
                 {
-                    Verbose = o.Contains("v"),
+                    Verbose = o.Contains("s"),
                     Natural = o.Contains("n")
                 };
             }
