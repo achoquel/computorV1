@@ -115,24 +115,15 @@ namespace computorv1.Classes
                 if (this.B > 0)
                 {
                     if (this.A != 0)
-                    {
                         str += "+ ";
-                        if (this.B == 1)
-                        {
-                            str += "x ";
-                        }
-                    }
-                    else
-                    {
-                        str += this.B.ToString() + "x ";
-                    }
+                    str += this.B.ToString() + "x ";
                 }
                 else if (this.B < 0)
                 {
                     if (this.A != 0)
                     {
                         str += "- ";
-                        if (this.B == 1)
+                        if (this.B == -1)
                         {
                             str += "x ";
                         }
@@ -142,7 +133,16 @@ namespace computorv1.Classes
                         }
                     }
                     else
-                        str += this.B.ToString() + "x ";
+                    {
+                        if (this.B == -1)
+                        {
+                            str += "-x ";
+                        }
+                        else
+                        {
+                            str += this.B.ToString() + "x ";
+                        }
+                    }
                 }
             }
             if (this.C != 0)
