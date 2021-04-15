@@ -36,7 +36,7 @@ namespace computorv1.Methods.Solving
                 }
                 else
                 {
-                    Console.WriteLine("Delta = 0.\nThe equation has one real solutions.\nx = " + solution);
+                    Console.WriteLine("The discriminant is equal to 0.\nThe equation has one real solution.\nx = " + solution);
                 }
             }
             else if (delta > 0)
