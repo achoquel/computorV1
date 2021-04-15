@@ -65,8 +65,10 @@ namespace computorv1.Methods.Solving
             }
             else
             {
-                string x1 = (p.ReducedC.B != 0 ? (-p.ReducedC.B / (2f * p.ReducedC.A)).ToString() : "") + " - " + (MathTools.Sqrt(-delta) / (2f * p.ReducedC.A)).ToString() + "i";
-                string x2 = (p.ReducedC.B != 0 ? (-p.ReducedC.B / (2f * p.ReducedC.A)).ToString() : "") + " + " + (MathTools.Sqrt(-delta) / (2f * p.ReducedC.A)).ToString() + "i";
+                float complexpart = MathTools.Sqrt(-delta) / (2f * p.ReducedC.A);
+
+                string x1 = (p.ReducedC.B != 0 ? (-p.ReducedC.B / (2f * p.ReducedC.A)).ToString() : "") + (complexpart < 0 ? " + " + (-complexpart).ToString() : " - " + complexpart.ToString()) + "i";
+                string x2 = (p.ReducedC.B != 0 ? (-p.ReducedC.B / (2f * p.ReducedC.A)).ToString() : "") + (complexpart < 0 ? " - " + (-complexpart).ToString() : " + " + complexpart.ToString()) + "i";
                 if (p.Options.Verbose)
                 {
                     Console.WriteLine("The discriminant is strictly negative. It means that the equation has two complex solutions, that we can obtain by doing\n" +
