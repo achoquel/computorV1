@@ -10,7 +10,7 @@ namespace computorv1.Methods.Parsing
     public class BasicParsingService
     {
         private static readonly string[] AUTHORIZED_POWERS = { "0", "1", "2" };
-        private static readonly string AUTHORIZED_CHARS = "0123456789+-=^/*x.";
+        private static readonly string AUTHORIZED_CHARS = "0123456789+-=^/*x.,";
         private static readonly string AVAILABLE_OPTIONS = "-sn";
 
         public BasicParsingService()
@@ -111,12 +111,14 @@ namespace computorv1.Methods.Parsing
                     //We also verify that we only have one or zero parts with the same x power
                     if (spart.Length == 0 || spart.Length > 3 || !CheckForXPowers(spart))
                     {
+                        ErrorTools.DisplayError("Error: An error occurred during the parsing for: " + string.Concat(spart) + ". It migtht be incorrectly formatted, or has too many coefficients in it.");
                         p.IsValid = false;
                     }
                 }
             }
             else
             {
+                ErrorTools.DisplayError("Error: A part of the equation is missing or it is empty.");
                 p.IsValid = false;
             }
         }
@@ -132,7 +134,7 @@ namespace computorv1.Methods.Parsing
             if (!e.All(c => AUTHORIZED_CHARS.Contains(c)))
                 return false;
             //We check for double operators
-            if (e.Contains("++") || e.Contains("**") || e.Contains("--") || e.Contains("-+") || e.Contains("+-") || e.Contains("..") || e.Contains("//") || e.Contains("x/"))
+            if (e.Contains("++") || e.Contains("**") || e.Contains("--") || e.Contains("-+") || e.Contains("+-") || e.Contains("..") || e.Contains(",,") || e.Contains("//") || e.Contains("x/"))
                 return false;
             //We check for double x
             if (e.Contains("xx"))
