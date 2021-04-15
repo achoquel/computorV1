@@ -116,21 +116,20 @@ namespace computorv1.Classes
                 {
                     if (this.A != 0)
                         str += "+ ";
-                    str += this.B.ToString() + "x ";
+                    if (this.B != 1)
+                        str += this.B.ToString();
+                    str += "x ";
                 }
                 else if (this.B < 0)
                 {
                     if (this.A != 0)
                     {
                         str += "- ";
-                        if (this.B == -1)
+                        if (this.B != -1)
                         {
-                            str += "x ";
+                            str += (-this.B).ToString();
                         }
-                        else
-                        {
-                            str += (-this.B).ToString() + "x ";
-                        }
+                        str += "x ";
                     }
                     else
                     {
