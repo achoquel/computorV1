@@ -51,6 +51,14 @@ namespace computorv1.Methods.Parsing
                     {
                         bValid = float.TryParse(splittedPart[0], out b);
                     }
+                    else if (exp == "0")
+                    {
+                        if (splittedPart[0].Contains("/"))
+                        {
+                            splittedPart[0] = ParseFractionnalForm(splittedPart[0]);
+                        }
+                        cValid = float.TryParse(splittedPart[0], out c);
+                    }
                 }
                 else
                 {

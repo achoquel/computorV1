@@ -87,7 +87,7 @@ namespace computorv1.Classes
                         str += this.C.ToString() + " * x ^ 0 ";
                 }
             }
-            return str ?? "0";
+            return str ?? "0 ";
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace computorv1.Classes
                         str += this.C.ToString() + " ";
                 }
             }
-            return str ?? "0";
+            return str ?? "0 ";
         }
     }
 }

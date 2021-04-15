@@ -107,7 +107,7 @@ namespace computorv1.Classes
         {
             Console.WriteLine("Trying to resolve " + (this.Options.Natural ? this.LeftC.ToStringNatural() : this.LeftC.ToString()) + "= " + (this.Options.Natural ? this.RightC.ToStringNatural() : this.RightC.ToString()) +
                               ".\nThe Reduced form of this equation is " + (this.Options.Natural ? this.ReducedC.ToStringNatural() : this.ReducedC.ToString()) + "= 0.\n" +
-                              "The Polynomial Degree of this equation is " + this.Degree.ToString() + "\n\n");
+                              "The Polynomial Degree of this equation is " + this.Degree.ToString() + ".\n");
             if (this.LeftC.A == this.RightC.A && this.LeftC.B == this.RightC.B && this.LeftC.C == this.RightC.C)
             {
                 Console.WriteLine("Every number is a solution for this equation.");
