@@ -159,7 +159,7 @@ namespace computorv1.Methods.Parsing
 
                 if (!AUTHORIZED_POWERS.Any(e => e == exp))
                 {
-                    ErrorTools.DisplayError("Error: The degree of this equation is not handled by computorv1.");
+                    ErrorTools.DisplayError("Error: The degree of this equation(" + exp + ") is not handled by computorv1.");
                     return false;
                 }
 
